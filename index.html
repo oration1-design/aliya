@@ -211,6 +211,65 @@ section{position:relative}
 .prog .themes li:before{content:"";position:absolute;left:0;top:14px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
 .prog .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
 .prog .meta span{font-size:12px;font-weight:600;padding:6px 12px;border-radius:100px;background:rgba(169,130,74,.18);color:var(--gold)}
+.prog{cursor:pointer}
+.prog-more{
+  margin-top:18px;align-self:flex-start;background:none;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:14px;font-weight:600;color:var(--gold);
+  display:inline-flex;align-items:center;gap:6px;padding:0;transition:.2s;
+}
+.prog:hover .prog-more{gap:10px}
+
+/* program modal */
+.modal{position:fixed;inset:0;z-index:200;display:none}
+.modal.open{display:block}
+.modal-backdrop{position:absolute;inset:0;background:rgba(16,15,13,.72);backdrop-filter:blur(4px);animation:fade .25s ease}
+.modal-card{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:min(720px,calc(100vw - 36px));max-height:88vh;overflow-y:auto;
+  background:var(--paper);color:var(--ink);border-radius:22px;padding:0;
+  box-shadow:0 40px 100px -30px rgba(0,0,0,.6);animation:pop .28s cubic-bezier(.2,.8,.3,1);
+}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translate(-50%,-46%) scale(.97)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.modal-x{
+  position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--line);background:var(--paper);font-size:22px;line-height:1;color:var(--muted);
+  cursor:pointer;transition:.2s;z-index:2;
+}
+.modal-x:hover{border-color:var(--gold);color:var(--gold-deep);transform:rotate(90deg)}
+.modal-head{background:var(--ink-dark);color:#f6f1e6;padding:38px 40px 30px;border-radius:22px 22px 0 0}
+.modal-head .m-pn{font-family:var(--serif);font-size:15px;color:var(--gold);letter-spacing:.1em}
+.modal-head h3{font-family:var(--serif);font-size:clamp(28px,4vw,40px);font-weight:600;line-height:1.04;margin:6px 0 10px}
+.modal-head p{font-size:16px;color:rgba(246,241,230,.75);max-width:52ch}
+.m-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.m-meta span{font-size:12px;font-weight:600;padding:6px 12px;border-radius:100px;background:rgba(169,130,74,.2);color:var(--gold)}
+.modal-body{padding:30px 40px}
+.m-block{margin-bottom:28px}
+.m-block:last-child{margin-bottom:0}
+.m-block h4{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:14px}
+.m-block>p{font-size:16px;color:#43403a;line-height:1.55}
+.m-days{display:flex;flex-direction:column;gap:14px}
+.m-day{border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--bg)}
+.m-day .dl{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin-bottom:10px;display:flex;align-items:baseline;gap:10px}
+.m-day .dl small{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--gold-deep);letter-spacing:.04em}
+.m-day ul{list-style:none}
+.m-day li{font-size:14.5px;color:#43403a;padding:5px 0 5px 20px;position:relative}
+.m-day li:before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.m-results{list-style:none;display:grid;gap:10px}
+.m-results li{font-size:15px;color:#43403a;padding-left:28px;position:relative;line-height:1.45}
+.m-results li:before{content:"✓";position:absolute;left:0;top:0;color:var(--gold-deep);font-weight:700}
+.m-format{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.m-format p{font-size:15px;color:#43403a}
+.modal-foot{
+  position:sticky;bottom:0;background:var(--paper);border-top:1px solid var(--line);
+  padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-radius:0 0 22px 22px;
+}
+.modal-foot .m-note{font-size:12.5px;color:var(--muted);max-width:34ch}
+@media(max-width:620px){
+  .modal-head,.modal-body,.modal-foot{padding-left:22px;padding-right:22px}
+  .modal-foot{flex-direction:column;align-items:stretch}
+  .modal-foot .btn{justify-content:center}
+}
 
 /* video */
 .video-main{
@@ -530,6 +589,7 @@ textarea:focus,input:focus{outline:none;border-color:var(--gold);background:var(
           <li>Стратегия Win-Win и синергия</li>
         </ul>
         <div class="meta"><span>2 дня</span><span>16 часов</span><span>от 10 чел.</span></div>
+        <button type="button" class="prog-more">Подробнее о программе →</button>
       </div>
       <div class="prog reveal">
         <div class="pn">02</div>
@@ -542,6 +602,7 @@ textarea:focus,input:focus{outline:none;border-color:var(--gold);background:var(
           <li>Синергия и командный результат</li>
         </ul>
         <div class="meta"><span>2 дня</span><span>16 часов</span><span>от 10 чел.</span></div>
+        <button type="button" class="prog-more">Подробнее о программе →</button>
       </div>
       <div class="prog reveal">
         <div class="pn">03</div>
@@ -554,10 +615,47 @@ textarea:focus,input:focus{outline:none;border-color:var(--gold);background:var(
           <li>Трудная аудитория</li>
         </ul>
         <div class="meta"><span>2 дня</span><span>16 часов</span><span>от 10 чел.</span></div>
+        <button type="button" class="prog-more">Подробнее о программе →</button>
       </div>
     </div>
   </div>
 </section>
+
+<!-- PROGRAM MODAL (раскрытие по клику) -->
+<div class="modal" id="progModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close="1"></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="modal-x" data-close="1" aria-label="Закрыть">×</button>
+    <div class="modal-head">
+      <span class="m-pn" id="mPn">01</span>
+      <h3 id="mTitle">Название</h3>
+      <p id="mTagline">Подзаголовок</p>
+      <div class="m-meta" id="mMeta"></div>
+    </div>
+    <div class="modal-body">
+      <div class="m-block">
+        <h4>Для кого</h4>
+        <p id="mFor"></p>
+      </div>
+      <div class="m-block">
+        <h4>Программа по дням</h4>
+        <div class="m-days" id="mDays"></div>
+      </div>
+      <div class="m-block">
+        <h4>Что в результате</h4>
+        <ul class="m-results" id="mResults"></ul>
+      </div>
+      <div class="m-block m-format">
+        <h4>Формат и условия</h4>
+        <p id="mFormat"></p>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <span class="m-note">Состав программы — рабочий мокап, финал согласуется под задачу.</span>
+      <button class="btn btn-primary" id="mCta">Обсудить эту программу →</button>
+    </div>
+  </div>
+</div>
 
 <!-- VIDEO -->
 <section class="sec" id="video">
@@ -935,6 +1033,131 @@ function render(){
   priceEl.textContent=fmt(estimate())+' ₸';
 }
 render();
+
+/* ===== Программы: раскрытие по клику (мокап) ===== */
+const PROGRAMS_DETAIL=[
+  {
+    pn:'01',
+    title:'Академия лидерства',
+    name:'Академия лидерства',
+    tagline:'Фундаментальная ревизия мышления и переход в «позицию взрослого».',
+    meta:['2 дня','16 часов','от 10 чел.','офлайн'],
+    forWhom:'Топ-менеджмент и руководители, которым важно перейти от роли исполнителя к зрелому, ответственному лидерству — и повести за собой команду.',
+    days:[
+      {label:'День 1',sub:'Ответственность и честность',items:[
+        'Позиция взрослого vs позиция жертвы: где вы сейчас',
+        'Ответственность как зона роста, а не источник вины',
+        'Честность с собой как отправная точка изменений',
+        'Доверие в команде: из чего оно складывается'
+      ]},
+      {label:'День 2',sub:'Результат и синергия',items:[
+        'Взгляд на результат: от процесса к итогу',
+        'Стратегия Win-Win в переговорах и управлении',
+        'Синергия команды: целое больше суммы частей',
+        'Личный план изменений на 90 дней'
+      ]}
+    ],
+    results:[
+      'Команда берёт ответственность за результат без перекладывания вины',
+      'Руководители перестают «тушить пожары» и управляют системно',
+      'Общий язык и принципы зрелого взаимодействия в команде',
+      'Конкретный план внедрения на ближайшие 3 месяца'
+    ]
+  },
+  {
+    pn:'02',
+    title:'Стратегии роста эффективности',
+    name:'Стратегии роста эффективности',
+    tagline:'На основе методики Стивена Кови — про продуктивность зрелого человека.',
+    meta:['2 дня','16 часов','от 10 чел.','офлайн'],
+    forWhom:'Руководители и команды, тонущие в «срочном» и теряющие фокус на главном. Для тех, кто хочет системную личную и командную эффективность.',
+    days:[
+      {label:'День 1',sub:'Проактивность и приоритеты',items:[
+        'Проактивность: круг влияния вместо круга забот',
+        'Начинать с конца: личная и командная цель',
+        'Матрица приоритетов: важное против срочного',
+        'Личная система планирования недели'
+      ]},
+      {label:'День 2',sub:'Люди и синергия',items:[
+        'Сначала понять, потом быть понятым: эмпатия и слушание',
+        'Win-Win как образ мышления',
+        'Синергия: разногласия как ресурс, а не угроза',
+        'Командный результат: договорённости и роли'
+      ]}
+    ],
+    results:[
+      'Команда фокусируется на важном, а не только на срочном',
+      'Меньше выгорания и хаоса, больше управляемости',
+      'Навык слушать и договариваться без потери результата',
+      'Рабочая система приоритетов на уровне команды'
+    ]
+  },
+  {
+    pn:'03',
+    title:'Мастер слова',
+    name:'Мастер слова',
+    tagline:'Публичные выступления и убеждение: риторика 40% · психология 20% · авторские техники 40%.',
+    meta:['2 дня','16 часов','от 10 чел.','офлайн'],
+    forWhom:'Все, кому важно убеждать словом: руководители, продавцы, спикеры, публичные лица. От страха сцены — к уверенному влиянию.',
+    days:[
+      {label:'День 1',sub:'Уверенность и подача',items:[
+        'Работа со страхом сцены: тело и дыхание',
+        'Голос, темп, паузы: что слышит аудитория',
+        'Жесты и невербалика: конгруэнтность',
+        'Первая минута: как захватить внимание'
+      ]},
+      {label:'День 2',sub:'Структура и влияние',items:[
+        'Структура «проблема–решение»: каркас речи',
+        'Аргументация и работа с возражениями',
+        'Трудная аудитория: как удержать и переубедить',
+        'Финальные выступления с разбором'
+      ]}
+    ],
+    results:[
+      'Выступление без парализующего страха сцены',
+      'Чёткая, убедительная структура любой речи',
+      'Уверенная работа с вопросами и сопротивлением',
+      'Личный набор приёмов под свои задачи'
+    ]
+  }
+];
+
+const modal=document.getElementById('progModal');
+function openProg(i){
+  const d=PROGRAMS_DETAIL[i]; if(!d)return;
+  document.getElementById('mPn').textContent=d.pn;
+  document.getElementById('mTitle').textContent=d.title;
+  document.getElementById('mTagline').textContent=d.tagline;
+  document.getElementById('mMeta').innerHTML=d.meta.map(m=>'<span>'+m+'</span>').join('');
+  document.getElementById('mFor').textContent=d.forWhom;
+  document.getElementById('mDays').innerHTML=d.days.map(day=>
+    '<div class="m-day"><div class="dl">'+day.label+' <small>'+day.sub+'</small></div><ul>'+
+    day.items.map(it=>'<li>'+it+'</li>').join('')+'</ul></div>'
+  ).join('');
+  document.getElementById('mResults').innerHTML=d.results.map(r=>'<li>'+r+'</li>').join('');
+  document.getElementById('mFormat').textContent='2 дня / 16 часов · предпочтительно офлайн · от 10 человек · стоимость-ориентир 5,5 млн ₸ за 2 дня (точную смету соберём в конструкторе или по заявке).';
+  document.getElementById('mCta').onclick=()=>{selectProgram(d.name);closeProg();location.hash='#lead';};
+  modal.classList.add('open');modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  track('program_open',{program:d.name});
+}
+function closeProg(){
+  modal.classList.remove('open');modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+function selectProgram(name){
+  const group=document.querySelector('.opts[data-group="programs"]');
+  group.querySelectorAll('.opt').forEach(o=>{
+    if(o.dataset.val===name && !o.classList.contains('active')) o.classList.add('active');
+  });
+  state.programs=[...group.querySelectorAll('.opt.active')].map(o=>o.dataset.val);
+  render();syncBrief();
+}
+document.querySelectorAll('.prog').forEach((card,i)=>{
+  card.addEventListener('click',()=>openProg(i));
+});
+modal.addEventListener('click',e=>{if(e.target.dataset.close)closeProg();});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeProg();});
 
 /* ===== Brief ===== */
 function buildBrief(){
